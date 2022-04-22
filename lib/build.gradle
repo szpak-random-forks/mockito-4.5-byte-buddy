@@ -1,0 +1,21 @@
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+
+    implementation('org.mockito:mockito-core:4.5.1') {
+        exclude group: 'net.bytebuddy'  //To simulate BB version enforcing in Spring Boot 2.6
+    }
+    implementation 'net.bytebuddy:byte-buddy:1.11.22'   //1.11.22 is set by Spring Boot 2.6.6
+    implementation 'net.bytebuddy:byte-buddy-agent:1.11.22'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
